@@ -8,7 +8,7 @@
     background-color: transparent;
     background-size: 22px;
     background-image: url(../../../images/profiel/AddButton.svg);
-    transition: .2s linear
+    transition: .2s linear;
 }
 
 .profile__add-button:hover {
