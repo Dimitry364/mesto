@@ -1,17 +1,36 @@
 # Проект: Место
 
-### Обзор
+## Создана в процессе обучения [Яндекс.Практикум](https://praktikum.yandex.ru/)
 
-* Figma
-* Картинки
 
-**Figma**
+## Описание проекта:
+В проекте реалезован базовый функционал JavaScrip (редактирование профиля, открытие и закрытие формы), применены технологии CSS3, HTML5. 
 
-* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
+Цель проекта - закрепить пройденный материал.
 
-**Картинки**
+## Функционал:
+- Адаптивный интерфейс для разных устройств.
+- Работа с JavaScript для взаимодействия с DOM-элементами страницы;
 
-Доставать картинки предстоит из Фигмы. Это расхожая практика, поэтому полезно потренироваться.
-Не забудьте [оптимизировать картинки](https://tinypng.com/), чтобы ваш сайт загружался быстрее.
+## Технологии:
+- HTML5;
+- CSS3:
+- JavaScript
+- БЭМ
+- Фйловая структура Nested БЭМ;
+- Вёрстка по макету в Figma.
 
-Удачи!
+## Макет Проектной работы в Figma:
+- [Макет 3](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1).
+
+## Чеклист Проектной работы:
+
+- [Чеклист 3](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist-4.pdf).
+
+## Репозиторий:
+
+[GitHubLink](https://github.com/Dimitry364/mesto.git)
+
+## Ссылка на сайт:
+https://dimitry364.github.io/russian-travel/
+
