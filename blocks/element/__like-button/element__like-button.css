@@ -6,10 +6,15 @@
     background-color: transparent;
     background-image: url(../../../images/elements/disabled.svg);
     background-repeat: no-repeat;
-    transition: all .2s linear
+    transition: all .2s linear;
 }
 
 .element__like-button:hover {
     opacity: .6;
     cursor: pointer;
+}
+
+.element__like-button:active {
+    opacity: 1;
+    background-image: url(../../../../images/elements/active.svg);
 }
