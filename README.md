@@ -32,5 +32,5 @@
 [GitHubLink](https://github.com/Dimitry364/mesto.git)
 
 ## Ссылка на сайт:
-https://dimitry364.github.io/russian-travel/
+https://dimitry364.github.io/mesto/
 
