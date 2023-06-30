@@ -10,7 +10,7 @@
 }
 
 .element__like-button:hover {
-    opacity: .5;
+    opacity: .6;
     cursor: pointer;
 }
 
