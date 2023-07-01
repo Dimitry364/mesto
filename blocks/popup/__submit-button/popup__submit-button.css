@@ -3,7 +3,7 @@
     height: 50px;
     font-size: 18px;
     font-weight: 400;
-    line-height: normal;
+    line-height: 22px;
     padding: 0;
     margin-top: 45px;
     border-radius: 2px;
@@ -20,6 +20,7 @@
 
 @media screen and (max-width: 1279px) {
     .popup__submit-button {
+        line-height: calc((100vw - 320px) / (1279 - 320) * (22 - 17) + 17px);
         font-size: calc((100vw - 320px) / (1279 - 320) * (18 - 14) + 14px);
         height: calc((100vw - 320px) / (1279 - 320) * (50 - 46) + 46px);
     }
