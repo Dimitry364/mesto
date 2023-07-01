@@ -3,7 +3,7 @@
     margin: 0;
     font-size: 42px;
     font-weight: 500;
-    line-height: 48px;
+    line-height: 51px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -12,6 +12,7 @@
 @media screen and (max-width: 1279px) {
     .profile__name {
         width: calc((100vw - 320px) / (1279 - 320) * (294 - 189) + 189px);
+        line-height: calc((100vw - 320px) / (1279 - 320) * (51 - 33) + 33px);
         font-size: calc((100vw - 320px) / (1279 - 320) * (42 - 27) + 27px);
     }
 }
