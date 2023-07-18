@@ -37,59 +37,10 @@
                 </div>
                 <button class="profile__add-button" type="button" title="Добавить фотографию"></button>
             </section>
-            <!-- Конец секции profiel -->
+            <!-- Конец секции profile -->
             <!-- Начало секции elements -->
             <section class="elements">
-                <ul class="elements__list">
-                    <li class="element">
-                        <img class="element__image" src="./images/elements/kirill-pershin-1088404-unsplash.jpg"
-                            alt="Карачаевск (фото)">
-                        <div class="element__info">
-                            <h2 class="element__caption">Карачаевск</h2>
-                            <button class="element__like-button" type="button" title="Нравится"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img class="element__image" src="./images/elements/kirill-pershin-1404681-unsplash.jpg"
-                            alt="Гора Эльбрус (фото)">
-                        <div class="element__info">
-                            <h2 class="element__caption">Гора Эльбрус</h2>
-                            <button class="element__like-button" type="button" title="Нравится"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img class="element__image" src="./images/elements/kirill-pershin-1556355-unsplash.jpg"
-                            alt="Домбай (фото)">
-                        <div class="element__info">
-                            <h2 class="element__caption">Домбай</h2>
-                            <button class="element__like-button" type="button" title="Нравится"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img class="element__image" src="./images/elements/aisvri-9-HqwRIbN9Q-unsplash.jpg"
-                            alt="Хасаут (фото)">
-                        <div class="element__info">
-                            <h2 class="element__caption">Хасаут</h2>
-                            <button class="element__like-button" type="button" title="Нравится"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img class="element__image" src="./images/elements/assem-gniyat-RQRI7boJ4pg-unsplash.jpg"
-                            alt="Гора Актуру (фото)">
-                        <div class="element__info">
-                            <h2 class="element__caption">Гора Актуру</h2>
-                            <button class="element__like-button" type="button" title="Нравится"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img class="element__image" src="./images/elements/dmitry-sumar-am4mOl5h_EA-unsplash.jpg"
-                            alt="Алтай (фото)">
-                        <div class="element__info">
-                            <h2 class="element__caption">Алтай</h2>
-                            <button class="element__like-button" type="button" title="Нравится"></button>
-                        </div>
-                    </li>
-                </ul>
+                <ul class="elements__list"></ul>
             </section>
             <!-- Конец секции elements -->
         </main>
@@ -100,7 +51,7 @@
         </footer>
         <!-- Конец секции footer -->
         <!-- Начало блока popup -->
-        <div class="popup">
+        <div class="popup" id="popup-edit">
             <div class="popup__container">
                 <form class="popup__form" action="#" name="profiel-edit">
                     <h2 class="popup__title">Редактировать профиль</h2>
@@ -113,8 +64,38 @@
                 </form>
             </div>
         </div>
+        <div class="popup" id="popup-add">
+            <div class="popup__container">
+                <form class="popup__form" action="#" name="card-create">
+                    <h2 class="popup__title">Новое место</h2>
+                    <fieldset class="popup__fieldset">
+                        <input class="popup__input" type="text" name="name" placeholder="Название" required>
+                        <input class="popup__input" type="text" name="link" placeholder="Ссылка на картинку" required>
+                        <button class="popup__submit-button" type="submit" title="Создать">Создать</button>
+                    </fieldset>
+                    <button class="popup__cancel-button" type="button"></button>
+                </form>
+            </div>
+        </div>
+        <div class="popup" id="popup-photos">
+            <div class="popup__photos-container">
+                <img class="popup__image" src="" alt="">
+                <h2 class="popup__photos-title"></h2>
+                <button class="popup__cancel-button" type="button" title="Закрыть"></button>
+            </div>
+        </div>
         <!-- Конец блока popup -->
     </div>
+    <template id="template-element">
+        <li class="element">
+            <img class="element__image" src="" alt="">
+            <button class="element__delete-button" type="button" title="Удалить"></button>
+            <div class="element__info">
+                <h2 class="element__caption"></h2>
+                <button class="element__like-button" type="button" title="Нравится"></button>
+            </div>
+        </li>
+    </template>
     <script src="./scripts/script.js"></script>
 </body>
 
