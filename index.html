@@ -70,14 +70,14 @@
                     <h2 class="popup__title">Новое место</h2>
                     <fieldset class="popup__fieldset">
                         <input class="popup__input" type="text" name="name" placeholder="Название" required>
-                        <input class="popup__input" type="text" name="link" placeholder="Ссылка на картинку" required>
+                        <input class="popup__input" type="url" name="link" placeholder="Ссылка на картинку" required>
                         <button class="popup__submit-button" type="submit" title="Создать">Создать</button>
                     </fieldset>
                     <button class="popup__cancel-button" type="button"></button>
                 </form>
             </div>
         </div>
-        <div class="popup" id="popup-photos">
+        <div class="popup popup_photos_background" id="popup-photos">
             <div class="popup__photos-container">
                 <img class="popup__image" src="." alt="">
                 <h2 class="popup__photos-title"></h2>
@@ -96,7 +96,8 @@
             </div>
         </li>
     </template>
-    <script src="./scripts/script.js"></script>
+    <script defer src="./scripts/constants.js"></script>
+    <script defer src="./scripts/script.js"></script>
 </body>
 
 </html>
