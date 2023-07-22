@@ -26,7 +26,31 @@ const photoPopupCloseButton = photoPopup.querySelector('.popup__cancel-button');
 const elementsList = document.querySelector('.elements__list');
 const elementTemplate = document.querySelector('#template-element').content;
 
-const escapeKeyCode = 27;
+const addPopupInfo = {
+    popup: addPopup,
+    popupContainer: addPopupContainer,
+    openButton: addButton,
+    cancelButton: addPopupCancelButton,
+    popupForm: addPopupForm,
+    handleOpenButton: () => openPopup(addPopup),
+    handleFormSubmit: handleAddPopupFormSubmit
+};
+
+const editPopupInfo = {
+    popup: editPopup,
+    popupContainer: editPopupContainer,
+    openButton: editButton,
+    cancelButton: editPopupCloseButton,
+    popupForm: editPopupForm,
+    handleOpenButton: onEditButtonClick,
+    handleFormSubmit: handleEditPopupFormSubmit
+};
+
+const photoPopupInfo = {
+    popup: photoPopup,
+    popupContainer: photoPopupContainer,
+    cancelButton: photoPopupCloseButton,
+}
 
 function createCard(cardInfo) {
     const cardTemplate = elementTemplate.cloneNode(true);
@@ -98,31 +122,29 @@ function closePopup(element) {
     document.removeEventListener('keydown', (evt) => closePopupEscapeClick(evt, element));
 }
 
-function closePopupEscapeClick(event, element)
-{
+function closePopupEscapeClick(event, element) {
     if (event.keyCode == escapeKeyCode)
         closePopup(element);
 }
 
-function stopPopupPropagation(event)
-{
+function stopPopupPropagation(event) {
     event.stopPropagation();
+}
+
+function initPopupEvents(popupInfo) {
+    popupInfo.popup.addEventListener('click', () => closePopup(popupInfo.popup));
+    popupInfo.popupContainer.addEventListener('click', stopPopupPropagation);
+    popupInfo.cancelButton.addEventListener('click', () => closePopup(popupInfo.popup));
+
+    if ('openButton' in popupInfo)
+        popupInfo.openButton.addEventListener('click', popupInfo.handleOpenButton);
+
+    if ('popupForm' in popupInfo)
+        popupInfo.popupForm.addEventListener('submit', popupInfo.handleFormSubmit);
 }
 
 initialCards.forEach(addCard);
 
-addPopup.addEventListener('click', () => closePopup(addPopup));
-addPopupContainer.addEventListener('click', stopPopupPropagation);
-addButton.addEventListener('click', () => openPopup(addPopup));
-addPopupCancelButton.addEventListener('click', () => closePopup(addPopup));
-addPopupForm.addEventListener('submit', handleAddPopupFormSubmit);
-
-editPopup.addEventListener('click', () => closePopup(editPopup));
-editPopupContainer.addEventListener('click', stopPopupPropagation);
-editButton.addEventListener('click', onEditButtonClick);
-editPopupCloseButton.addEventListener('click', () => closePopup(editPopup));
-editPopupForm.addEventListener('submit', handleEditPopupFormSubmit);
-
-photoPopup.addEventListener('click', () => closePopup(photoPopup));
-photoPopupContainer.addEventListener('click', stopPopupPropagation);
-photoPopupCloseButton.addEventListener('click', () => closePopup(photoPopup));
+initPopupEvents(addPopupInfo);
+initPopupEvents(editPopupInfo);
+initPopupEvents(photoPopupInfo);
