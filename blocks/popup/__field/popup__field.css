@@ -1,0 +1,7 @@
+.popup__field {
+    margin: 0 0 30px;
+}
+
+.popup__field:nth-last-child(2n) {
+    margin: 0;
+}
