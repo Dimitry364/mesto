@@ -3,7 +3,6 @@ const profileAbout = document.querySelector('.profile__about');
 
 const editButton = document.querySelector('.profile__edit-button');
 const editPopup = document.querySelector('#popup-edit');
-const editPopupContainer = editPopup.querySelector('.popup__container');
 const editPopupForm = editPopup.querySelector('.popup__form');
 const editPopupNameInput = editPopupForm.querySelector('[name=name]');
 const editPopupAboutInput = editPopupForm.querySelector('[name=about]');
@@ -11,14 +10,13 @@ const editPopupCloseButton = editPopupForm.querySelector('.popup__cancel-button'
 
 const addButton = document.querySelector('.profile__add-button');
 const addPopup = document.querySelector('#popup-add');
-const addPopupContainer = addPopup.querySelector('.popup__container');
 const addPopupNameInput = addPopup.querySelector('[name=name]');
 const addPopupLinkInput = addPopup.querySelector('[name=link]');
 const addPopupForm = addPopup.querySelector('.popup__form');
+const addPopupSubmutButton = addPopup.querySelector('.popup__button');
 const addPopupCancelButton = addPopup.querySelector('.popup__cancel-button');
 
 const photoPopup = document.querySelector('#popup-photos');
-const photoPopupContainer = photoPopup.querySelector('.popup__photos-container');
 const photoPopupTitle = photoPopup.querySelector('.popup__photos-title');
 const photoPopupImage = photoPopup.querySelector('.popup__image');
 const photoPopupCloseButton = photoPopup.querySelector('.popup__cancel-button');
@@ -28,7 +26,6 @@ const elementTemplate = document.querySelector('#template-element').content;
 
 const addPopupInfo = {
     popup: addPopup,
-    popupContainer: addPopupContainer,
     openButton: addButton,
     cancelButton: addPopupCancelButton,
     popupForm: addPopupForm,
@@ -38,7 +35,6 @@ const addPopupInfo = {
 
 const editPopupInfo = {
     popup: editPopup,
-    popupContainer: editPopupContainer,
     openButton: editButton,
     cancelButton: editPopupCloseButton,
     popupForm: editPopupForm,
@@ -48,7 +44,6 @@ const editPopupInfo = {
 
 const photoPopupInfo = {
     popup: photoPopup,
-    popupContainer: photoPopupContainer,
     cancelButton: photoPopupCloseButton,
 }
 
@@ -102,6 +97,7 @@ function handleAddPopupFormSubmit(evt) {
     closePopup(addPopup);
 
     addPopupForm.reset();
+    disableButton(addPopupSubmutButton, validationInfo);
 }
 
 function openPhotosPopup(name, link) {
@@ -114,26 +110,28 @@ function openPhotosPopup(name, link) {
 
 function openPopup(element) {
     element.classList.add('popup_opened');
-    document.addEventListener('keydown', (evt) => closePopupEscapeClick(evt, element));
+    document.addEventListener('keydown', closePopupEscapeClick);
 }
 
 function closePopup(element) {
     element.classList.remove('popup_opened');
-    document.removeEventListener('keydown', (evt) => closePopupEscapeClick(evt, element));
+    document.removeEventListener('keydown', closePopupEscapeClick);
 }
 
-function closePopupEscapeClick(event, element) {
-    if (event.keyCode == escapeKeyCode)
+function closePopupEscapeClick(event) {
+    if (event.keyCode == escapeKeyCode) {
+        const element = document.querySelector('.popup_opened');
         closePopup(element);
+    }
 }
 
-function stopPopupPropagation(event) {
-    event.stopPropagation();
+function onPopupClick(event) {
+    if (event.target.classList.contains('popup'))
+        closePopup(event.target);
 }
 
 function initPopupEvents(popupInfo) {
-    popupInfo.popup.addEventListener('click', () => closePopup(popupInfo.popup));
-    popupInfo.popupContainer.addEventListener('click', stopPopupPropagation);
+    popupInfo.popup.addEventListener('mousedown', onPopupClick);
     popupInfo.cancelButton.addEventListener('click', () => closePopup(popupInfo.popup));
 
     if ('openButton' in popupInfo)
