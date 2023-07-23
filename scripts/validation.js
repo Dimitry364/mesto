@@ -1,12 +1,3 @@
-const validationInfo = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__button',
-    inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__input-error_active'
-}
-
 const showInputError = (form, element, errorMessage, validationInfo) => {
     element.classList.add(validationInfo.inputErrorClass);
 
@@ -29,14 +20,21 @@ const hasInvalidInput = (inputList) => {
     })
 };
 
+const enableButton = (buttonElement, validationInfo) => {
+    buttonElement.classList.remove(validationInfo.inactiveButtonClass);
+    buttonElement.disabled = false;
+}
+
+const disableButton = (buttonElement, validationInfo) => {
+    buttonElement.classList.add(validationInfo.inactiveButtonClass);
+    buttonElement.disabled = true;
+}
+
 const toggleButtonState = (inputList, buttonElement, validationInfo) => {
-    if (hasInvalidInput(inputList)) {
-        buttonElement.classList.add(validationInfo.inactiveButtonClass);
-        buttonElement.disabled = true;
-    } else {
-        buttonElement.classList.remove(validationInfo.inactiveButtonClass);
-        buttonElement.disabled = false;
-    }
+    if (hasInvalidInput(inputList))
+        disableButton(buttonElement, validationInfo);
+    else
+        enableButton(buttonElement, validationInfo);
 };
 
 const isValid = (formElement, inputElement, validationInfo) => {
