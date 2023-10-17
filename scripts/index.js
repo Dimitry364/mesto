@@ -1,6 +1,6 @@
-import { Card } from './card.js';
+import { Card } from './Card.js';
 import FormValidator from './FormValidator.js';
-import { initialCards, validationInfo, escapeKeyCode } from './initialCards.js';
+import { initialCards, validationInfo, escapeKeyCode, templateCardId } from './initialCards.js';
 
 const profileName = document.querySelector('.profile__name');
 const profileAbout = document.querySelector('.profile__about');
@@ -31,7 +31,6 @@ const photoPopupImage = photoPopup.querySelector('.popup__image');
 const photoPopupCloseButton = photoPopup.querySelector('.popup__cancel-button');
 
 const elementsList = document.querySelector('.elements__list');
-const elementTemplate = document.querySelector('#template-element').content;
 
 const addPopupInfo = {
     popup: addPopup,
@@ -57,7 +56,7 @@ const photoPopupInfo = {
 }
 
 function addCard(cardInfo) {
-    const card = new Card(cardInfo, elementTemplate, openPhotosPopup);
+    const card = new Card(cardInfo, templateCardId, openPhotosPopup);
     const finishCard = card.generateCard();
 
     elementsList.prepend(finishCard);
@@ -86,7 +85,7 @@ function handleAddPopupFormSubmit(evt) {
     closePopup(addPopup);
 
     addPopupForm.reset();
-    addPopupFormValidator.toggleButtonState();
+    addPopupFormValidator._toggleButtonState();
 }
 
 const openPhotosPopup = (link, name) => {
@@ -106,6 +105,8 @@ function closePopup(element) {
     element.classList.remove('popup_opened');
     document.removeEventListener('keydown', closePopupEscapeClick);
     addPopupForm.reset();
+    addPopupFormValidator.resetValidation();
+    editPopupFormValidator.resetValidation();
 }
 
 function closePopupEscapeClick(event) {

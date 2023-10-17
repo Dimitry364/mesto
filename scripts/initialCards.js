@@ -35,3 +35,4 @@ export const validationInfo = {
 }
 
 export const escapeKeyCode = 27;
+export const templateCardId = "#template-element";
