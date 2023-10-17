@@ -1,3 +1,7 @@
+import { Card } from './card.js';
+import FormValidator from './FormValidator.js';
+import { initialCards, validationInfo, escapeKeyCode } from './initialCards.js';
+
 const profileName = document.querySelector('.profile__name');
 const profileAbout = document.querySelector('.profile__about');
 
@@ -8,13 +12,18 @@ const editPopupNameInput = editPopupForm.querySelector('[name=name]');
 const editPopupAboutInput = editPopupForm.querySelector('[name=about]');
 const editPopupCloseButton = editPopupForm.querySelector('.popup__cancel-button');
 
+const editPopupFormValidator = new FormValidator(validationInfo, editPopupForm);
+editPopupFormValidator.enableValidation();
+
 const addButton = document.querySelector('.profile__add-button');
 const addPopup = document.querySelector('#popup-add');
 const addPopupNameInput = addPopup.querySelector('[name=name]');
 const addPopupLinkInput = addPopup.querySelector('[name=link]');
 const addPopupForm = addPopup.querySelector('.popup__form');
-const addPopupSubmutButton = addPopup.querySelector('.popup__button');
 const addPopupCancelButton = addPopup.querySelector('.popup__cancel-button');
+
+const addPopupFormValidator = new FormValidator(validationInfo, addPopupForm);
+addPopupFormValidator.enableValidation();
 
 const photoPopup = document.querySelector('#popup-photos');
 const photoPopupTitle = photoPopup.querySelector('.popup__photos-title');
@@ -44,34 +53,14 @@ const editPopupInfo = {
 
 const photoPopupInfo = {
     popup: photoPopup,
-    cancelButton: photoPopupCloseButton,
-}
-
-function createCard(cardInfo) {
-    const cardTemplate = elementTemplate.cloneNode(true);
-
-    const image = cardTemplate.querySelector('.element__image');
-    image.src = cardInfo.link;
-    image.alt = cardInfo.name;
-    image.addEventListener('click', () => openPhotosPopup(cardInfo.name, cardInfo.link));
-
-    cardTemplate.querySelector('.element__caption').textContent = cardInfo.name;
-
-    cardTemplate.querySelector('.element__like-button').addEventListener('click', (evt) => {
-        evt.target.classList.toggle('element__like-button_active');
-    });
-
-    cardTemplate.querySelector('.element__delete-button').addEventListener('click', (evt) => {
-        evt.target.closest('.element').remove();
-    });
-
-    return cardTemplate;
+    cancelButton: photoPopupCloseButton
 }
 
 function addCard(cardInfo) {
-    const card = createCard(cardInfo)
+    const card = new Card(cardInfo, elementTemplate, openPhotosPopup);
+    const finishCard = card.generateCard();
 
-    elementsList.prepend(card);
+    elementsList.prepend(finishCard);
 }
 
 function onEditButtonClick() {
@@ -97,10 +86,10 @@ function handleAddPopupFormSubmit(evt) {
     closePopup(addPopup);
 
     addPopupForm.reset();
-    disableButton(addPopupSubmutButton, validationInfo);
+    addPopupFormValidator.toggleButtonState();
 }
 
-function openPhotosPopup(name, link) {
+const openPhotosPopup = (link, name) => {
     photoPopupImage.src = link;
     photoPopupImage.alt = name;
     photoPopupTitle.textContent = name;
@@ -116,6 +105,7 @@ function openPopup(element) {
 function closePopup(element) {
     element.classList.remove('popup_opened');
     document.removeEventListener('keydown', closePopupEscapeClick);
+    addPopupForm.reset();
 }
 
 function closePopupEscapeClick(event) {

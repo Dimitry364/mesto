@@ -1,4 +1,4 @@
-const initialCards = [
+export const initialCards = [
     {
         name: 'Архыз',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -25,7 +25,7 @@ const initialCards = [
     }
 ];
 
-const validationInfo = {
+export const validationInfo = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__button',
@@ -34,4 +34,4 @@ const validationInfo = {
     errorClass: 'popup__input-error_active'
 }
 
-const escapeKeyCode = 27;
+export const escapeKeyCode = 27;
