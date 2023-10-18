@@ -20,13 +20,13 @@ export class Card {
     generateCard() {
         this._element = this._getTemplate();
         this._image = this._element.querySelector('.element__image');
+        this._buttonLike = this._element.querySelector('.element__like-button');
         this._setEventListeners();
 
         this._image.src = this._imageLink;
         this._image.alt = this._imageName;
         this._element.querySelector('.element__caption').textContent = this._imageName;
-        
-        this._buttonLike = this._element.querySelector('.element__like-button');
+
 
         return this._element;
     }
@@ -36,7 +36,7 @@ export class Card {
             this._openPhotosPopup(this._image.src, this._image.alt)
         });
 
-        this._element.querySelector('.element__like-button').addEventListener('click', () => {
+        this._buttonLike.addEventListener('click', () => {
             this._handleLikeButton();
         });
 
