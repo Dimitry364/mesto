@@ -9,14 +9,13 @@
     <meta name="description" content="Страница про различные веб-технологии">
     <meta name="keywords" content="Фотография, достопримечательности, Путишествие, Удивительные места">
     <meta name="author" content="Дмитрий Ярушкин">
-    <link rel="stylesheet" href="./pages/index.css">
 </head>
 
 <body>
     <div class="page">
         <!-- Начало блока header -->
         <header class="header">
-            <img class="header__logo" src="./images/header/logo.svg" alt="Логотип Mesto">
+            <img class="header__logo" src="<%=require('./images/header/logo.svg')%>" alt="Логотип Mesto">
         </header>
         <!-- Конец блока header -->
         <!-- Начало блока main -->
@@ -25,7 +24,7 @@
             <section class="profile">
                 <div class="profile__container">
                     <div class="profile__img-mask">
-                        <img class="profile__avatar" alt="Аватар" src="./images/profiel/avatar.png">
+                        <img class="profile__avatar" alt="Аватар" src="<%=require('./images/profiel/avatar.png')%>">
                     </div>
                     <div class="profile__info">
                         <div class="profile__info-container">
@@ -112,7 +111,6 @@
             </div>
         </li>
     </template>
-    <script type="module" src="./scripts/index.js"></script>
 </body>
 
 </html>

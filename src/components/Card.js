@@ -1,9 +1,9 @@
-export class Card {
-    constructor(data, selectorTemplate, openPhotosPopup) {
+export default class Card {
+    constructor(data, selectorTemplate, imageClickCallBack) {
         this._imageLink = data.link;
         this._imageName = data.name;
         this._selectorTemplate = selectorTemplate;
-        this._openPhotosPopup = openPhotosPopup;
+        this._imageClickCallBack = imageClickCallBack;
 
     }
 
@@ -33,7 +33,7 @@ export class Card {
 
     _setEventListeners() {
         this._image.addEventListener('click', () => {
-            this._openPhotosPopup(this._image.src, this._image.alt)
+            this._imageClickCallBack(this._image.src, this._image.alt)
         });
 
         this._buttonLike.addEventListener('click', () => {

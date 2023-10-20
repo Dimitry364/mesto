@@ -36,3 +36,5 @@ export const validationInfo = {
 
 export const escapeKeyCode = 27;
 export const templateCardId = "#template-element";
+export const editButton = document.querySelector('.profile__edit-button');
+export const addButton = document.querySelector('.profile__add-button');
