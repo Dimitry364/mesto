@@ -12,7 +12,7 @@
 }
 
 .profile__avatar-edit:hover {
-    background-image: url(../../../images/profiel/avatarEddit.png);
+    background-image: url(../../../images/profiel/avatarEddit.svg);
     background-position: center;
     background-size: 26px;
     background-repeat: no-repeat;
