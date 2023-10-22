@@ -13,12 +13,21 @@
 - Работа с JavaScript для взаимодействия с DOM-элементами страницы;
 
 ## Технологии:
-- HTML5;
-- CSS3:
-- JavaScript
-- БЭМ
-- Фйловая структура Nested БЭМ;
-- Вёрстка по макету в Figma.
+-HTML5;
+-CSS3:
+-Flexbox;
+-Grid Layout;
+-Positioning;
+-Adaptive UI;
+-Media Queries;
+-Методология БЭМ;
+-Файловая структура Nested БЭМ;
+-JavaScript:
+-Объектно-ориентированное программирование;
+-Промисы (Promise);
+-Асинхронность и оптимизация;
+-API (Application Programming Interface);
+-Webpack.
 
 ## Добавлено:
 - Форма добавления карточек
@@ -29,16 +38,16 @@
 - Обработка нажатий клавиш
 
 ## Макет Проектной работы в Figma:
-- [Макет 6](https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6?node-id=0%3A1).
+- [Макет 9](https://www.figma.com/file/PSdQFRHoxXJFs2FH8IXViF/JavaScript-9-sprint?node-id=0%3A1).
 
 ## Чеклист Проектной работы:
 
-- [Чеклист 6](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist-6.pdf).
+- [Чеклист 9](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist-9.pdf).
 
 ## Репозиторий:
 
 [GitHubLink](https://github.com/Dimitry364/mesto.git)
 
-## Ссылка на сайт:
+## Ссылка на GitHub Pages:
 https://dimitry364.github.io/mesto/
 
