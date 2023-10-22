@@ -24,7 +24,9 @@
             <section class="profile">
                 <div class="profile__container">
                     <div class="profile__img-mask">
-                        <img class="profile__avatar" alt="Аватар" src="<%=require('./images/profiel/avatar.png')%>">
+                        <button class="profile__avatar-edit" type="button" title="Обновить аватар"><img
+                                class="profile__avatar" alt="Аватар"
+                                src="<%=require('./images/profiel/avatar.png')%>"></button>
                     </div>
                     <div class="profile__info">
                         <div class="profile__info-container">
@@ -56,8 +58,8 @@
                     <h2 class="popup__title">Редактировать профиль</h2>
                     <fieldset class="popup__fieldset">
                         <div class="popup__field">
-                            <input id="popup__edit-name-input" class="popup__input" type="text" minlength="2" maxlength="40"
-                                name="name" placeholder="Имя" required>
+                            <input id="popup__edit-name-input" class="popup__input" type="text" minlength="2"
+                                maxlength="40" name="name" placeholder="Имя" required>
                             <span class="popup__edit-name-input-error popup__input-error"></span>
                         </div>
                         <div class="popup__field">
@@ -77,8 +79,8 @@
                     <h2 class="popup__title">Новое место</h2>
                     <fieldset class="popup__fieldset">
                         <div class="popup__field">
-                            <input id="popup__add-name-input" class="popup__input" type="text" minlength="2" maxlength="30"
-                                name="name" placeholder="Название" required>
+                            <input id="popup__add-name-input" class="popup__input" type="text" minlength="2"
+                                maxlength="30" name="name" placeholder="Название" required>
                             <span class="popup__add-name-input-error popup__input-error"></span>
                         </div>
                         <div class="popup__field">
@@ -92,6 +94,34 @@
                 </form>
             </div>
         </div>
+        <!--  -->
+        <div class="popup" id="popup-del">
+            <div class="popup__container">
+                <form class="popup__form" action="#" name="card-delete">
+                    <h2 class="popup__title popup__title_delete">Вы уверены?</h2>
+                    <button class="popup__button" type="submit" title="Да">Да</button>
+                    <button class="popup__cancel-button" type="button"></button>
+                </form>
+            </div>
+        </div>
+        <!--  -->
+        <div class="popup" id="popup-add-avatar">
+            <div class="popup__container">
+                <form class="popup__form" action="#" name="card-create" novalidate>
+                    <h2 class="popup__title">Обновить аватар</h2>
+                    <fieldset class="popup__fieldset">
+                        <div class="popup__field">
+                            <input id="popup__add-link-input" class="popup__input" type="url" name="link"
+                                placeholder="Ссылка на картинку" required>
+                            <span class="popup__add-link-input-error popup__input-error"></span>
+                        </div>
+                        <button class="popup__button" type="submit" title="Создать">Сохранить</button>
+                    </fieldset>
+                    <button class="popup__cancel-button" type="button"></button>
+                </form>
+            </div>
+        </div>
+        <!--  -->
         <div class="popup popup_photos_background" id="popup-photos">
             <div class="popup__photos-container">
                 <img class="popup__image" src="." alt="">
@@ -107,7 +137,10 @@
             <button class="element__delete-button" type="button" title="Удалить"></button>
             <div class="element__info">
                 <h2 class="element__caption"></h2>
-                <button class="element__like-button" type="button" title="Нравится"></button>
+                <div class="element__like-container">
+                    <button class="element__like-button" type="button" title="Нравится"></button>
+                    <h3 class="element__like-counter">1</h3>
+                </div>
             </div>
         </li>
     </template>
