@@ -73,17 +73,17 @@ addButton.addEventListener('click', () => {
 function onAddPopupSubmit(evt, { name, link }) {
     evt.preventDefault();
 
-    const submitElement = addPopup.getFormElement().elements.submit;
-    const oldValue = submitElement.textContent;
-    submitElement.textContent = 'Сохранение...';
+    
+    const oldValue = evt.submitter.textContent;
+    evt.submitter.textContent = 'Сохранение...';
 
     api.addCard({ name, link }).then((result) => {
         addCard(result);
+        addPopup.close();
     }).catch((err) => {
         console.log(err);
     }).finally(() => {
-        addPopup.close();
-        submitElement.textContent = oldValue;
+        evt.submitter.textContent = oldValue;
     });
 }
 
@@ -93,10 +93,7 @@ editPopupFormValidator.enableValidation();
 
 editButton.addEventListener('click', () => {
     const info = userInfo.getUserInfo();
-    const formElement = editPopup.getFormElement();
-
-    formElement.elements.name.value = info.name;
-    formElement.elements.about.value = info.about;
+    editPopup.setInpuValues(info);
 
     editPopupFormValidator.resetValidation();
     editPopup.open();
@@ -105,17 +102,16 @@ editButton.addEventListener('click', () => {
 function onEditPopupSubmit(evt, { name, about }) {
     evt.preventDefault();
 
-    const submitElement = editPopup.getFormElement().elements.submit;
-    const oldValue = submitElement.textContent;
-    submitElement.textContent = 'Сохранение...';
+    const oldValue = evt.submitter.textContent;
+    evt.submitter.textContent = 'Сохранение...';
 
     api.setUser({ name, about }).then((result) => {
         userInfo.setUserInfo(result);
+        editPopup.close();
     }).catch((err) => {
         console.log(err);
     }).finally(() => {
-        editPopup.close();
-        submitElement.textContent = oldValue;
+        evt.submitter.textContent = oldValue;
     });
 }
 
@@ -123,9 +119,7 @@ editAvatarPopup.setEventListeners();
 editAvatarPopupFormValidator.enableValidation();
 editAvatarButton.addEventListener('click', () => {
     const info = userInfo.getUserInfo();
-    const formElement = editAvatarPopup.getFormElement();
-
-    formElement.elements.link.value = info.avatar;
+    editAvatarPopup.setInpuValues(info);
 
     editAvatarPopupFormValidator.resetValidation();
     editAvatarPopup.open();
@@ -134,32 +128,26 @@ editAvatarButton.addEventListener('click', () => {
 function onEditAvatarPopupSubmit(evt, { link }) {
     evt.preventDefault();
 
-    const submitElement = editAvatarPopup.getFormElement().elements.submit;
-    const oldValue = submitElement.textContent;
-    submitElement.textContent = 'Сохранение...';
+    const oldValue = evt.submitter.textContent;
+    evt.submitter.textContent = 'Сохранение...';
 
     api.updateAvatar(link).then((result) => {
         userInfo.setUserInfo(result);
+        editAvatarPopup.close();
     }).catch((err) => {
         console.log(err);
     }).finally(() => {
-        editAvatarPopup.close();
-        submitElement.textContent = oldValue;
+        evt.submitter.textContent = oldValue;
     });
 }
 
 popupWithImage.setEventListeners();
 popupWithConfirmation.setEventListeners();
 
-api.getUser().then((result) => {
-    userInfo.setUserInfo(result);
-
-    api.getInitialCards().then((result) => {
-        section.setItems(result);
-        section.renderAll();
-    }).catch((err) => {
-        console.log(err);
-    });
+api.getInitialData().then(([userData, initialCardsData]) => {
+    userInfo.setUserInfo(userData);
+    section.setItems(initialCardsData);
+    section.renderAll();
 }).catch((err) => {
     console.log(err);
 });

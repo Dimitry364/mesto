@@ -7,7 +7,6 @@ export const validationInfo = {
     errorClass: 'popup__input-error_active'
 }
 
-export const escapeKeyCode = 27;
 export const templateCardId = "#template-element";
 export const editButton = document.querySelector('.profile__edit-button');
 export const editAvatarButton = document.querySelector('.profile__avatar-edit');

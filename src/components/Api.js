@@ -4,85 +4,72 @@ export default class Api {
         this._headers = options.headers;
     }
 
+    getInitialData() {
+        return Promise.all([this.getUser(), this.getInitialCards()]);
+    }
+
     getUser() {
-        return fetch(this._baseUrl + '/users/me', {
+        return this._request(this._baseUrl + '/users/me', {
             method: 'GET',
             headers: this._headers
-        })
-            .then(res => {
-                return this._checkResponse(res);
-            });
+        });
     }
 
     setUser({ name, about }) {
-        return fetch(this._baseUrl + '/users/me', {
+        return this._request(this._baseUrl + '/users/me', {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
                 name: name,
                 about: about
             })
-        })
-            .then(res => {
-                return this._checkResponse(res);
-            });
+        });
     }
 
     updateAvatar(avatarSrc) {
-        return fetch(this._baseUrl + '/users/me/avatar', {
+        return this._request(this._baseUrl + '/users/me/avatar', {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
                 avatar: avatarSrc
             })
-        })
-            .then(res => {
-                return this._checkResponse(res);
-            });
+        });
     }
 
     addCard({ name, link }) {
-        return fetch(this._baseUrl + '/cards', {
+        return this._request(this._baseUrl + '/cards', {
             method: 'POST',
             headers: this._headers,
             body: JSON.stringify({
                 name: name,
                 link: link
             })
-        })
-            .then(res => {
-                return this._checkResponse(res);
-            });
+        });
     }
 
     likeCard(id, isLiked) {
-        return fetch(this._baseUrl + '/cards/likes/' + id, {
+        return this._request(this._baseUrl + '/cards/likes/' + id, {
             method: isLiked ? 'DELETE' : 'PUT',
             headers: this._headers
-        })
-            .then(res => {
-                return this._checkResponse(res);
-            });
+        });
     }
 
     deleteCard(id) {
-        return fetch(this._baseUrl + '/cards/' + id, {
+        return this._request(this._baseUrl + '/cards/' + id, {
             method: 'DELETE',
             headers: this._headers
-        })
-            .then(res => {
-                return this._checkResponse(res);
-            });
+        });
     }
 
     getInitialCards() {
-        return fetch(this._baseUrl + '/cards', {
+        return this._request(this._baseUrl + '/cards', {
             method: 'GET',
             headers: this._headers
-        })
-            .then(res => {
-                return this._checkResponse(res);
-            });
+        });
+    }
+
+    _request(url, options) {
+        return fetch(url, options).then(this._checkResponse)
     }
 
     _checkResponse(res) {

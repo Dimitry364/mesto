@@ -26,6 +26,7 @@ export default class Card {
         this._image = this._element.querySelector('.element__image');
         this._buttonLike = this._element.querySelector('.element__like-button');
         this._deleteButton = this._element.querySelector('.element__delete-button');
+        this._likeCounter = this._element.querySelector('.element__like-counter');
         this._setEventListeners();
 
         this._image.src = this._imageLink;
@@ -71,7 +72,7 @@ export default class Card {
 
     _updateLikes() {
         this._isLiked = this._imageLikes.some((user) => user._id == this._ownerId);
-        this._element.querySelector('.element__like-counter').textContent = this._imageLikes.length;
+        this._likeCounter.textContent = this._imageLikes.length;
 
         if (this._isLiked) {
             if (!this._buttonLike.classList.contains('element__like-button_active'))
